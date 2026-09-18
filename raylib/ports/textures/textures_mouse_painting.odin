@@ -71,7 +71,7 @@ main :: proc() {
 	for !rl.WindowShouldClose() {   // Detect window close button or ESC key
 		// Update
 		//----------------------------------------------------------------------------------
-		mousePos := rl.GetMousePosition()
+		mouse_pos := rl.GetMousePosition()
 
 		// Move between colors with keys
 		if rl.IsKeyPressed(.RIGHT) {
@@ -88,7 +88,7 @@ main :: proc() {
 
 		// Choose color with mouse
 		for i := 0; i < MAX_COLORS_COUNT; i += 1 {
-			if (rl.CheckCollisionPointRec(mousePos, colors_recs[i])) {
+			if (rl.CheckCollisionPointRec(mouse_pos, colors_recs[i])) {
 				color_mouse_hover = i
 				break
 			} else {
@@ -122,8 +122,8 @@ main :: proc() {
 			// NOTE: To avoid discontinuous circles, we could store
 			// previous-next mouse points and just draw a line using brush size
 			rl.BeginTextureMode(target)
-			if mousePos.y > 50 {
-				rl.DrawCircle(c.int(mousePos.x), c.int(mousePos.y), brush_size, colors[color_selected])
+			if mouse_pos.y > 50 {
+				rl.DrawCircle(c.int(mouse_pos.x), c.int(mouse_pos.y), brush_size, colors[color_selected])
 			}
 			rl.EndTextureMode()
 		}
@@ -138,8 +138,8 @@ main :: proc() {
 
 			// Erase circle from render texture
 			rl.BeginTextureMode(target)
-			if mousePos.y > 50 {
-				rl.DrawCircle(c.int(mousePos.x), c.int(mousePos.y), brush_size, colors[0])
+			if mouse_pos.y > 50 {
+				rl.DrawCircle(c.int(mouse_pos.x), c.int(mouse_pos.y), brush_size, colors[0])
 			}
 			rl.EndTextureMode()
 		} else if rl.IsMouseButtonReleased(.RIGHT) && mouse_was_pressed {
@@ -148,7 +148,7 @@ main :: proc() {
 		}
 
 		// Check mouse hover save button
-		if rl.CheckCollisionPointRec(mousePos, btn_save_rec) {
+		if rl.CheckCollisionPointRec(mouse_pos, btn_save_rec) {
 			btn_save_mouse_hover = true
 		} else {
 			btn_save_mouse_hover = false
@@ -184,9 +184,9 @@ main :: proc() {
 		rl.DrawTextureRec(target.texture, rl.Rectangle{ 0, 0, f32(target.texture.width), f32(-target.texture.height) }, rl.Vector2 { 0, 0 }, rl.WHITE)
 
 		// Draw drawing circle for reference
-		if mousePos.y > 50 {
+		if mouse_pos.y > 50 {
 			if rl.IsMouseButtonDown(.RIGHT) {
-				rl.DrawCircleLines(c.int(mousePos.x), c.int(mousePos.y), brush_size, rl.GRAY)
+				rl.DrawCircleLines(c.int(mouse_pos.x), c.int(mouse_pos.y), brush_size, rl.GRAY)
 			} else {
 				rl.DrawCircle(rl.GetMouseX(), rl.GetMouseY(), brush_size, colors[color_selected])
 			}
