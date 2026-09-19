@@ -45,16 +45,16 @@ main :: proc() {
 		colors_recs[i].height = 30
 	}
 
-	color_selected:      int  = 0
-	color_selected_prev: int  = color_selected
-	color_mouse_hover:   int  = 0
-	brush_size:          f32  = 20.0
-	mouse_was_pressed:   bool = false
+	color_selected := 0
+	color_selected_prev : int  = color_selected
+	color_mouse_hover := 0
+	brush_size := 20.0
+	mouse_was_pressed := false
 
 	btn_save_rec := rl.Rectangle{ 750, 10, 40, 30 }
-	btn_save_mouse_hover: bool = false
-	show_save_message: bool = false
-	save_message_counter: int = 0
+	btn_save_mouse_hover := false
+	show_save_message := false
+	save_message_counter := 0
 
 	// Create a RenderTexture2D to use as a canvas
 	target := rl.LoadRenderTexture(SCREEN_WIDTH, SCREEN_HEIGHT)
