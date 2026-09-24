@@ -48,7 +48,7 @@ main :: proc() {
 	color_selected := 0
 	color_selected_prev : int  = color_selected
 	color_mouse_hover := 0
-	brush_size := 20.0
+	brush_size := f32(20.0)
 	mouse_was_pressed := false
 
 	btn_save_rec := rl.Rectangle{ 750, 10, 40, 30 }
